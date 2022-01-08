@@ -7,9 +7,9 @@ const app = express()
 const {SERVER_PORT} = process.env
 console.log('hi '+ process.env.SERVER_PORT)
 app.use(express.json())
-//app.use(express.static(`${__dirname}/../build`))
+app.use(express.static(`${__dirname}/../build`))
 
-
+app.get('/api', async (req, res)=> res.status(200).send('hello fam'))
 
 
 
