@@ -62,10 +62,10 @@ const Dash1 = (props)=>{
         // console.log(gridRows2.map(e=>(Number.isInteger(Object.values(e)))?Object.values(e).toFixed(2):e))
 
         return(
-            <Container maxWidth="m">        
-            <h1>hi</h1>
+            <Container maxWidth="m">    
+            
 
-            <div style={{ height: 300, width: '100%' }}>
+            <div style={{ height: 500, width: '100%' }}>
             <DataGrid
   colu3mns={[
       { field: 'username' }, { field: 'age' }]}
