@@ -9,7 +9,7 @@ const app = express()
 const {SERVER_PORT, API_CMP_KEY} = process.env
 
 app.use(express.json())
-app.use(express.static(`${__dirname}/../build`))
+// app.use(express.static(`${__dirname}/../build`))
 
 app.get('/api/latest', apiGetter.getLatest)
 
