@@ -34,16 +34,14 @@ const Dash1 = (props)=>{
 
   
     
-    if(props.latestData){        
-        // let gridColumns = Object.keys(props.latestData[0]).concat(Object.keys(props.latestData[0]['quote']['USD']))
-        // console.log(gridColumns)
+    if(props.latestData){       
         let columnsFinal=
         [
             {
                 "field": "name",
                 "headerName": "Name",
                 "description": "The cryptocurrency name",
-                "minWidth": 150
+                "minWidth": 150,                
             },
             {
                 "field": "symbol",
@@ -55,42 +53,21 @@ const Dash1 = (props)=>{
                 "field": "price",
                 "headerName": "Price",
                 "description": "latest average trade price across markets",
-                "width": 200
+                "width": 100,
+                "type":'number',
             },           
         ]
         
-        const rowTemplate= {
-            "id": 1,
-            "name": "Bitcoin",
-            "symbol": "BTC",            
-            "price": 41685.26236025842,            
-        }
-        
-        
-        
-        // console.log('grid columns ' + gridColumns)
-        // let gridColumnName=gridColumns.map(colName=>{            
-                 
-
-        //     return{
-        //         field:colName,
-        //         headerName:colName.charAt(0).toUpperCase()+colName.slice(1),
-        //         description:colDescription[colName],
-        //         width:200
-        //     }
-        // }).filter(e=>e.description!=null)
-
-        // console.log(gridColumnName)
-        
+                
         let gridRows = props.latestData
 
         let gridRows2 =gridRows.map(row=>{
-            // console.log(row)
+            
             return{
                 ...row, ...row['quote']['USD'] 
             }
         })
-        // console.log(gridRows2)
+        
         let finalRow=gridRows2.map(obj=>{
             return{
 
@@ -104,19 +81,17 @@ const Dash1 = (props)=>{
         })        
 
         return(
-            // <Container maxWidth="m" >    
+             
             
 
             <div id="Dash1">
             <DataGrid
+            hideFooterPagination
             onCellClick={(params, event) => {                
-                  event.defaultMuiPrevented = true;
-                //   console.log(event)
-                //   console.log(event.target)
+                  event.defaultMuiPrevented = true;            
                 let clickItem= ""
                 clickItem=event.target.innerText
-                let itemToCompare=gridRows2.find(e=>e.name==clickItem)
-                // console.log(itemToCompare)
+                let itemToCompare=gridRows2.find(e=>e.name==clickItem)                
                 if(itemToCompare){                    
                     props.addItem(itemToCompare)
                 }
@@ -127,7 +102,7 @@ const Dash1 = (props)=>{
       rows={finalRow}
 />
     </div>    
-        // </Container>
+        
     )
 }
 

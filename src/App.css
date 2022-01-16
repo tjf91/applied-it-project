@@ -1,6 +1,7 @@
 .App {
-  text-align: center;
+  text-align: center;  
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -16,12 +17,15 @@
 .App-header {
   background-color: #a9abb1;
   min-height: 100vh;
+  max-height: 200vh;
+  min-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  align-content: space-between;
+  /* justify-content: flex-start; */
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white;  
 }
 
 .App-link {

@@ -1,8 +1,6 @@
 import React from "react";
 import { DataGrid} from '@mui/x-data-grid';
 import "./Dash2.css"
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
@@ -23,12 +21,7 @@ const Dash2=(props)=>{
                 "width": 200
             },
             
-            {
-                "field": "date_added",
-                "headerName": "Date added",
-                "description": "Date cryptocurrency was added to the system",
-                "width": 200
-            },
+           
             
            
            
@@ -70,6 +63,12 @@ const Dash2=(props)=>{
                     })
             },
             {
+                "field": "date_added",
+                "headerName": "Date added",
+                "description": "Date cryptocurrency was added to the system",
+                "width": 200
+            },
+            {
                 "field": "volume_24h",
                 "headerName": "Volume 24h",
                 "description": "rolling 24 hour adjusted trading volume",
@@ -107,31 +106,6 @@ const Dash2=(props)=>{
             }
         ]
 
-    // let gridColumns = Object.keys(props.latestData[0]).concat(Object.keys(props.latestData[0]['quote']['USD']))
-
-    // console.log(gridColumns)
-        // console.log(props.latestData)
-    //  if(props.latestData){
-    //      const gridRows2 =props.latestData.map(row=>{
-
-            //  console.log(row)
-             // return{
-                 //     ...row, ...row['quote']['USD'] 
-                 // }
-                // })
-                // console.log(gridRows2)
-                // let finalRow=gridRows2.map(obj=>{
-                    //     return{
-                        
-                        //         id:obj.id,
-                        //         name:obj.name,
-                        //         symbol:obj.symbol,
-                        //         price:obj.price.toFixed(2)
-                        //     }
-                        
-                        
-                        // })    
-                    // }   
     
     function fixLargeNumbers(number){
         return number.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -159,16 +133,15 @@ const Dash2=(props)=>{
                
             
     )
-            // console.log(mappedItems)
+           
 
     if(mappedItems.length){
 
         return(
-            <div id='Dash2'>
-            {/* {mappedItems} */}
+            <div id='Dash2'>           
             <Box
       sx={{
-        height: 300,
+        height: 500,
         width: 1,
         '& .super-app-theme--cell': {
           backgroundColor: 'rgba(224, 183, 60, 0.55)',
@@ -189,18 +162,20 @@ const Dash2=(props)=>{
     >
 
             <DataGrid
+hideFooterPagination
 onCellClick={(params, event) => {               
      
     let clickItem= ""
     clickItem=event.target.innerText
     const itemToCompare=mappedItems.find(e=>e.name==clickItem)
-//   console.log(itemToCompare)
+
   if(itemToCompare){                    
       props.handleRemove(itemToCompare)
   }
  
                        
               }}
+             
 columns={columnsFinal}
 rows={mappedItems}        
 
@@ -211,7 +186,7 @@ rows={mappedItems}
     )
 }else{
     return(
-        <h1>Click on a name for details</h1>
+        <h1>Click on a Coin Name for details</h1>
     )
 }
 }

@@ -6,6 +6,7 @@ import Dash2 from "./Components/Dash2/Dash2"
 import Footer from "./Components/Footer/Footer"
 
 import './App.css';
+import Header from './Components/Header/Header';
 
 function App() {
 const [timestamp, setTimeStamp]=useState(null)  
@@ -22,13 +23,10 @@ const handleRemove=(input)=>{
 useEffect(() => {
   console.log('using effect....')
   axios.get('/api/latest')
-  .then(res => {
-    // console.log(res.data)    
+  .then(res => {    
     setTimeStamp(res.data.status.timestamp)
     setLatestData(res.data.data)
-    // console.log(res.data)
-
-  })
+   })
   .catch(e=> console.log(e))
 },[]);
 
@@ -37,10 +35,10 @@ useEffect(() => {
   return (
     <div className="App">
       <header className="App-header">            
-        <h1>
-          Welcome to Applied IT Project
-          </h1> 
-          
+        <Header
+        timestamp={timestamp}
+        >
+          </Header>          
        <Dash1 
           addItem={handleAdd}
           latestData={latestData}>
@@ -52,8 +50,8 @@ useEffect(() => {
           handleRemove={handleRemove}>
 
         </Dash2>
-          <Footer />
             </header>
+          <Footer />
     </div>
   );
 }

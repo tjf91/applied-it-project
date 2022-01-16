@@ -1,0 +1,14 @@
+#Footer{
+    height: 50px;
+    width: 100%;
+    background: rgba(175, 156, 177, 1.0);
+    background: -webkit-radial-gradient(center, rgba(175, 156, 177, 1.0), rgba(169, 171, 177, 1.0));
+    background: -moz-radial-gradient(center, rgba(175, 156, 177, 1.0), rgba(169, 171, 177, 1.0));
+    background: radial-gradient(ellipse at center, rgba(175, 156, 177, 1.0), rgba(169, 171, 177, 1.0));
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+
+}
