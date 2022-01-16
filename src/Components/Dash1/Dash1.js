@@ -2,6 +2,7 @@ import "./Dash1.css"
 import React from 'react'
 import { Container } from '@mui/material';
 import { DataGrid} from '@mui/x-data-grid';
+import DownloadingIcon from '@mui/icons-material/Downloading';
 
 
 
@@ -24,10 +25,6 @@ percent_change_1h: "1 hour trading price percentage change for each currency",
 percent_change_24h: "24 hour trading price percentage change for each currency",
 percent_change_7d:"7 day trading price percentage change for each currency"
 }
-
-
-
-
 const Dash1 = (props)=>{
 
     function handleClick(e){
@@ -38,8 +35,8 @@ const Dash1 = (props)=>{
   
     
     if(props.latestData){        
-        let gridColumns = Object.keys(props.latestData[0]).concat(Object.keys(props.latestData[0]['quote']['USD']))
-
+        // let gridColumns = Object.keys(props.latestData[0]).concat(Object.keys(props.latestData[0]['quote']['USD']))
+        // console.log(gridColumns)
         let columnsFinal=
         [
             {
@@ -59,84 +56,31 @@ const Dash1 = (props)=>{
                 "headerName": "Price",
                 "description": "latest average trade price across markets",
                 "width": 200
-            },
-            {
-                "field": "num_market_pairs",
-                "headerName": "Num_market_pairs",
-                "description": "number of market pairs across all exchanges trading each currency",
-                "width": 200
-            },
-            {
-                "field": "date_added",
-                "headerName": "Date_added",
-                "description": "Date cryptocurrency was added to the system",
-                "width": 200
-            },
-            {
-                "field": "max_supply",
-                "headerName": "Max_supply",
-                "description": "our best approximation of the maximum amount of coins that will ever exist in the lifetime of the currency",
-                "width": 200
-            },
-            {
-                "field": "circulating_supply",
-                "headerName": "Circulating_supply",
-                "description": "approximate number of coins currently in circulation",
-                "width": 200
-            },
-            {
-                "field": "total_supply",
-                "headerName": "Total_supply",
-                "description": "approximate total amount of coins in existence right now (minus any coins that have been verifiably burned)",
-                "width": 200
-            },
-           
-            {
-                "field": "volume_24h",
-                "headerName": "Volume_24h",
-                "description": "rolling 24 hour adjusted trading volume",
-                "width": 200
-            },
-            {
-                "field": "percent_change_1h",
-                "headerName": "Percent_change_1h",
-                "description": "1 hour trading price percentage change for each currency",
-                "width": 200
-            },
-            {
-                "field": "percent_change_24h",
-                "headerName": "Percent_change_24h",
-                "description": "24 hour trading price percentage change for each currency",
-                "width": 200
-            },
-            {
-                "field": "percent_change_7d",
-                "headerName": "Percent_change_7d",
-                "description": "7 day trading price percentage change for each currency",
-                "width": 200
-            },
-            {
-                "field": "market_cap",
-                "headerName": "Market_cap",
-                "description": "CoinMarketCap's market cap rank as outlined in our methodology",
-                "width": 200
-            }
+            },           
         ]
+        
+        const rowTemplate= {
+            "id": 1,
+            "name": "Bitcoin",
+            "symbol": "BTC",            
+            "price": 41685.26236025842,            
+        }
+        
         
         
         // console.log('grid columns ' + gridColumns)
-        let gridColumnName=gridColumns.map(colName=>{            
+        // let gridColumnName=gridColumns.map(colName=>{            
                  
 
-            return{
-                field:colName,
-                headerName:colName.charAt(0).toUpperCase()+colName.slice(1),
-                description:colDescription[colName],
-                width:200
-            }
-        }).filter(e=>e.description!=null)
+        //     return{
+        //         field:colName,
+        //         headerName:colName.charAt(0).toUpperCase()+colName.slice(1),
+        //         description:colDescription[colName],
+        //         width:200
+        //     }
+        // }).filter(e=>e.description!=null)
 
-        console.log(gridColumnName)
+        // console.log(gridColumnName)
         
         let gridRows = props.latestData
 
@@ -146,50 +90,52 @@ const Dash1 = (props)=>{
                 ...row, ...row['quote']['USD'] 
             }
         })
-        console.log(gridRows2)
+        // console.log(gridRows2)
+        let finalRow=gridRows2.map(obj=>{
+            return{
 
-        // console.log(gridRows2.map(e=>(Number.isInteger(Object.values(e)))?Object.values(e).toFixed(2):e))
+                id:obj.id,
+                name:obj.name,
+                symbol:obj.symbol,
+                price:obj.price.toFixed(2)
+            }
+
+
+        })        
 
         return(
-            <Container maxWidth="m" >    
+            // <Container maxWidth="m" >    
             
 
-            <div style={{ height: 500, width: '100%' }}>
+            <div id="Dash1">
             <DataGrid
             onCellClick={(params, event) => {                
                   event.defaultMuiPrevented = true;
                 //   console.log(event)
-                //   console.log(event.target.style)
+                //   console.log(event.target)
                 let clickItem= ""
                 clickItem=event.target.innerText
-                if(gridRows2.find(e=>e.name==clickItem)){
-                    props.addItem(clickItem)
+                let itemToCompare=gridRows2.find(e=>e.name==clickItem)
+                // console.log(itemToCompare)
+                if(itemToCompare){                    
+                    props.addItem(itemToCompare)
                 }
-                //   gridRows2.map(e=>e.name.includes(event.target.innerText)?props.addItem(event.target.innerText):alert('Click Name'))
-
-                      
-                  
-
-
-                
-            }}
-
-
-  colu3mns={[
-      { field: 'username' }, { field: 'age' }]}
+               
+                                     
+                            }}  
       columns={columnsFinal}
-      rows={gridRows2}
+      rows={finalRow}
 />
-    </div>
-    
-        </Container>
+    </div>    
+        // </Container>
     )
 }
 
 else{
-    return(
-        
-        <h1 >Loading</h1>
+    return(        
+        <h1 >
+            <DownloadingIcon/>
+        </h1>
       )
   }
 }

@@ -3,6 +3,7 @@ import axios from "axios";
 import React,{useEffect, useState} from "react"
 import Dash1 from "./Components/Dash1/Dash1"
 import Dash2 from "./Components/Dash2/Dash2"
+import Footer from "./Components/Footer/Footer"
 
 import './App.css';
 
@@ -14,14 +15,16 @@ const [itemCompare, setItemCompare]= useState([])
 const handleAdd=(input)=>{
   setItemCompare([...itemCompare, input])
 }
+const handleRemove=(input)=>{  
+  setItemCompare([...itemCompare.filter(e=>e.name !== input.name)])
+}  
 
-  
 useEffect(() => {
   console.log('using effect....')
   axios.get('/api/latest')
   .then(res => {
     // console.log(res.data)    
-    // setTimeStamp(res.data.status.timestamp)
+    setTimeStamp(res.data.status.timestamp)
     setLatestData(res.data.data)
     // console.log(res.data)
 
@@ -42,12 +45,15 @@ useEffect(() => {
           addItem={handleAdd}
           latestData={latestData}>
        </Dash1>
+       
         <Dash2
           itemCompare={itemCompare}
-          >
+          latestData={latestData}
+          handleRemove={handleRemove}>
 
         </Dash2>
-          </header>
+          <Footer />
+            </header>
     </div>
   );
 }
