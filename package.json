@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "cypress": "^9.6.1",
-    "cypress-react-selector": "^2.3.17"
+    "cypress-react-selector": "^2.3.17",
+    "ts-migrate": "^0.1.29"
   }
 }
