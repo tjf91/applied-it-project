@@ -1,4 +1,5 @@
 import "./Dash1.css"
+// @ts-expect-error ts-migrate(1259) FIXME: Module '"S:/Projects/applied-it-project/node_modul... Remove this comment to see the full error message
 import React from 'react'
 import { Container } from '@mui/material';
 import { DataGrid} from '@mui/x-data-grid';
@@ -84,13 +85,15 @@ const Dash1 = (props)=>{
              
             
 
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div id="Dash1">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <DataGrid
             hideFooterPagination
             onCellClick={(params, event) => {                
                   event.defaultMuiPrevented = true;            
                 let clickItem= ""
-                clickItem=event.target.innerText
+                clickItem = (event.target as any).innerText;
                 let itemToCompare=gridRows2.find(e=>e.name==clickItem)                
                 if(itemToCompare){                    
                     props.addItem(itemToCompare)
@@ -108,7 +111,9 @@ const Dash1 = (props)=>{
 
 else{
     return(        
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <h1 >
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <DownloadingIcon/>
         </h1>
       )

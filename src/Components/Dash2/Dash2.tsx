@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(1259) FIXME: Module '"S:/Projects/applied-it-project/node_modul... Remove this comment to see the full error message
 import React from "react";
 import { DataGrid} from '@mui/x-data-grid';
 import "./Dash2.css"
@@ -108,12 +109,12 @@ const Dash2=(props)=>{
 
     
     function fixLargeNumbers(number){
-        return number.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        return number.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }                
 
     const mappedItems= props.itemCompare.map((item,index)=>{
 
-        return{
+        return {
             id:item.id,
             name:item.name,
             price:item.price,
@@ -128,7 +129,7 @@ const Dash2=(props)=>{
             market_cap:item.market_cap.toFixed(2),
             num_market_pairs:item.num_market_pairs
 
-            }}           
+            };}           
 
                
             
@@ -138,7 +139,9 @@ const Dash2=(props)=>{
     if(mappedItems.length){
 
         return(
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div id='Dash2'>           
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Box
       sx={{
         height: 500,
@@ -161,12 +164,13 @@ const Dash2=(props)=>{
       }}
     >
 
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <DataGrid
 hideFooterPagination
 onCellClick={(params, event) => {               
      
     let clickItem= ""
-    clickItem=event.target.innerText
+    clickItem = (event.target as any).innerText;
     const itemToCompare=mappedItems.find(e=>e.name==clickItem)
 
   if(itemToCompare){                    
@@ -186,6 +190,7 @@ rows={mappedItems}
     )
 }else{
     return(
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <h1>Click on a Coin Name for details</h1>
     )
 }
