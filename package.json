@@ -2,7 +2,6 @@
   "name": "applied-it-project",
   "version": "0.1.0",
   "main": "server/index.js",
-  "proxy": "http://localhost:4000",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -47,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^9.6.1",
+    "cypress-react-selector": "^2.3.17"
   }
 }
