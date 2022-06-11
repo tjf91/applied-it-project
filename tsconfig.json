@@ -1,4 +1,5 @@
 {
-    "extends": "../tsconfig.json",
-    "include": [".", "../typescript/types"]
+    "extends": "@tsconfig/node12/tsconfig.json",
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
   }
