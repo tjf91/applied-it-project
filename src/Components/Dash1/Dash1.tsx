@@ -1,5 +1,5 @@
 import "./Dash1.css"
-// @ts-expect-error ts-migrate(1259) FIXME: Module '"S:/Projects/applied-it-project/node_modul... Remove this comment to see the full error message
+
 import React from 'react'
 import { Container } from '@mui/material';
 import { DataGrid} from '@mui/x-data-grid';
@@ -26,9 +26,9 @@ percent_change_1h: "1 hour trading price percentage change for each currency",
 percent_change_24h: "24 hour trading price percentage change for each currency",
 percent_change_7d:"7 day trading price percentage change for each currency"
 }
-const Dash1 = (props)=>{
+const Dash1 = (props: any) => {
 
-    function handleClick(e){
+    function handleClick(e: any){
         e.preventDefault()
         console.log(e)
     }
@@ -62,14 +62,14 @@ const Dash1 = (props)=>{
                 
         let gridRows = props.latestData
 
-        let gridRows2 =gridRows.map(row=>{
+        let gridRows2 =gridRows.map((row: any) => {
             
             return{
                 ...row, ...row['quote']['USD'] 
             }
         })
         
-        let finalRow=gridRows2.map(obj=>{
+        let finalRow=gridRows2.map((obj: any) => {
             return{
 
                 id:obj.id,
@@ -81,20 +81,16 @@ const Dash1 = (props)=>{
 
         })        
 
-        return(
-             
-            
-
-            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+        return (
             <div id="Dash1">
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
+
             <DataGrid
             hideFooterPagination
             onCellClick={(params, event) => {                
                   event.defaultMuiPrevented = true;            
                 let clickItem= ""
                 clickItem = (event.target as any).innerText;
-                let itemToCompare=gridRows2.find(e=>e.name==clickItem)                
+                let itemToCompare=gridRows2.find((e: any) => e.name==clickItem)                
                 if(itemToCompare){                    
                     props.addItem(itemToCompare)
                 }
@@ -104,16 +100,15 @@ const Dash1 = (props)=>{
       columns={columnsFinal}
       rows={finalRow}
 />
-    </div>    
-        
-    )
+    </div>
+        );
 }
 
 else{
     return(        
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
         <h1 >
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
+
             <DownloadingIcon/>
         </h1>
       )

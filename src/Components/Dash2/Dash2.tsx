@@ -1,11 +1,11 @@
-// @ts-expect-error ts-migrate(1259) FIXME: Module '"S:/Projects/applied-it-project/node_modul... Remove this comment to see the full error message
+
 import React from "react";
 import { DataGrid} from '@mui/x-data-grid';
 import "./Dash2.css"
 import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
-const Dash2=(props)=>{
+const Dash2=(props: any) => {
 
     let columnsFinal=
         [
@@ -32,11 +32,10 @@ const Dash2=(props)=>{
                 "description": "1 hour trading price percentage change for each currency",
                 "width": 150,
                 "type":'number',
-                cellClassName:(params) =>
-                    clsx('super-app', {
-                        negative: params.value > 0,
-                        positive: params.value < 0,
-                    })
+                cellClassName:(params: any) => clsx('super-app', {
+                    negative: params.value > 0,
+                    positive: params.value < 0,
+                })
                 ,
             },
             {
@@ -45,11 +44,10 @@ const Dash2=(props)=>{
                 "description": "24 hour trading price percentage change for each currency",
                 "width": 200,
                 "type":'number',
-                cellClassName:(params) =>
-                    clsx('super-app', {
-                        negative: params.value > 0,
-                        positive: params.value < 0,
-                    })
+                cellClassName:(params: any) => clsx('super-app', {
+                    negative: params.value > 0,
+                    positive: params.value < 0,
+                })
             },
             {
                 "field": "percent_change_7d",
@@ -57,11 +55,10 @@ const Dash2=(props)=>{
                 "description": "7 day trading price percentage change for each currency",
                 "width": 200,
                 "type":'number',
-                cellClassName:(params) =>
-                    clsx('super-app', {
-                        negative: params.value > 0,
-                        positive: params.value < 0,
-                    })
+                cellClassName:(params: any) => clsx('super-app', {
+                    negative: params.value > 0,
+                    positive: params.value < 0,
+                })
             },
             {
                 "field": "date_added",
@@ -108,11 +105,11 @@ const Dash2=(props)=>{
         ]
 
     
-    function fixLargeNumbers(number){
+    function fixLargeNumbers(number: any){
         return number.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }                
 
-    const mappedItems= props.itemCompare.map((item,index)=>{
+    const mappedItems= props.itemCompare.map((item: any,index: any)=>{
 
         return {
             id:item.id,
@@ -138,10 +135,9 @@ const Dash2=(props)=>{
 
     if(mappedItems.length){
 
-        return(
-            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+        return (
             <div id='Dash2'>           
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
+
             <Box
       sx={{
         height: 500,
@@ -164,14 +160,14 @@ const Dash2=(props)=>{
       }}
     >
 
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
+
             <DataGrid
 hideFooterPagination
 onCellClick={(params, event) => {               
      
     let clickItem= ""
     clickItem = (event.target as any).innerText;
-    const itemToCompare=mappedItems.find(e=>e.name==clickItem)
+    const itemToCompare=mappedItems.find((e: any) => e.name==clickItem)
 
   if(itemToCompare){                    
       props.handleRemove(itemToCompare)
@@ -187,10 +183,10 @@ rows={mappedItems}
 />
 </Box>
         </div>
-    )
+        );
 }else{
     return(
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
         <h1>Click on a Coin Name for details</h1>
     )
 }
