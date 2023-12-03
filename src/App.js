@@ -20,6 +20,7 @@ function App() {
     setItemCompare([...itemCompare.filter((e) => e.name !== input.name)]);
   };
   console.log("first console log");
+  console.log("second console log");
 
   useEffect(() => {
     console.log("using effect....");
